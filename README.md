@@ -369,7 +369,6 @@ recognizer = cv2.face.LBPHFaceRecognizer_create()
 Tao ra 1 doi thuoc lop  cv2.face.LBPHFaceRecognizer.
 
 
-Line 54
 ```ruby
 faces = face_cascade.detectMultiScale(image_array, scaleFactor = 1.3, minNeighbors = 5)
 ```
@@ -387,4 +386,10 @@ if give minNeibor = 1, we have few false positives
 
 Best minNeighbor is 3 !
 
+```ruby
+    ret, img = cap.read()
+    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+```
+ret là 1 biến boolean nếu như img là khả dụng
+frame là 1 mảng các vector hình ảnh bắt được
 
