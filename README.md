@@ -93,9 +93,9 @@ def assistant_speaks(output):
 
 
 
-'''
-    listen speech and transform to text
-'''
+
+#listen speech and transform to text
+
 def get_audio():
     r = sr.Recognizer()
     audio = ''
@@ -119,10 +119,10 @@ def get_audio():
         return 0
 
 
-'''
-  Process text with some task: caculate, seach, open application
 
-'''
+#Process text with some task: caculate, seach, open application
+
+
 def process_text(input):
     try:
         if 'search' in input or 'play' in input:
@@ -160,9 +160,8 @@ def process_text(input):
         if 'yes' in str(ans) or 'yeah' in str(ans):
             search_web(input)
 
-'''
-    search some query on google, youtube, wikipedia...
-'''
+
+ #search some query on google, youtube, wikipedia...
 
 def search_web(input):
     driver = webdriver.Chrome(executable_path=r"D:\SUBJECT\Project 1\Opencv\chromedriver.exe");
@@ -250,17 +249,17 @@ def getProfile(id):
     return profile
 
 
-'''
-    read the saved model
-'''
+
+ #read the saved model
+
 rec =  cv2.face.LBPHFaceRecognizer_create()
 rec.read("recognizer/trainningData.yml")
 
-'''
-    because have 2 threads in my program
-    1 thread for video(A), 1 thread for listen speech(B)
-    because program have a task need 2 threads, so we need a call back to move from thread B to thread A
-'''
+
+    #because have 2 threads in my program
+    #1 thread for video(A), 1 thread for listen speech(B)
+    #because program have a task need 2 threads, so we need a call back to move from thread B to thread A
+
 #call back function
 def callback(recognizer, audio):
     try:
@@ -279,10 +278,10 @@ def callback(recognizer, audio):
 
 
 
-'''
-    creat an object to listen speech from microphone 
-    and other object to recoginizer speech
-'''
+
+   # creat an object to listen speech from microphone 
+   # and other object to recoginizer speech
+
 r = sr.Recognizer()
 m = sr.Microphone()
 
@@ -298,10 +297,10 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 face_cascade = cv2.CascadeClassifier('D:\\PROGRAM LANGUAGE\\python\\speechrecoginzer\\haarcascade_frontalface_default.xml')
 
 
-'''
-    when we listen, the energy threshold is already set to a good value,
-    and we can reliably catch speech right away
-'''
+
+  #when we listen, the energy threshold is already set to a good value,
+  #and we can reliably catch speech right away
+
 with m as source:
     r.adjust_for_ambient_noise(source)  # we only need to calibrate once, before we start listening
 stop_listening = r.listen_in_background(m, callback)
