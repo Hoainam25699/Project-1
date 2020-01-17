@@ -1,9 +1,9 @@
 # Project-1
-```
-faceTrain.py
-```
 
-```
+###### faceTrain.py
+
+
+```ruby
 import os
 import cv2
 import numpy as np
