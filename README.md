@@ -138,18 +138,6 @@ def process_text(input):
             assistant_speaks(speak)
             return
 
-        elif "calculate" in input.lower():
-
-            # write your wolframalpha app_id here
-            app_id = "WOLFRAMALPHA_APP_ID"
-            client = wolframalpha.Client(app_id)
-
-            indx = input.lower().split().index('calculate')
-            query = input.split()[indx + 1:]
-            res = client.query(' '.join(query))
-            answer = next(res.results).text
-            assistant_speaks("The answer is " + answer)
-            return
 
         elif 'open' in input:
 
