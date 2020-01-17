@@ -5,7 +5,7 @@ from PIL import Image
 
 import pickle
 
-recognizer=cv2.face.LBPHFaceRecognizer_create();
+recognizer = cv2.face.LBPHFaceRecognizer_create();
 path = 'dataSet'
 
 def getImagesWithID(path):
@@ -13,17 +13,16 @@ def getImagesWithID(path):
     faces=[]
     IDs = []
     for imagepath in imagepaths:
-        faceImg = Image.open(imagepath).convert('L');
+        faceImg = Image.open(imagepath).convert('L');  # convert to single channel( gray scale)
         faceNp = np.array(faceImg, 'uint8')
         ID = int(os.path.split(imagepath)[-1].split('.')[1])
-        print(ID)
         faces.append(faceNp)
         IDs.append(ID)
         cv2.imshow("training",faceNp)
         cv2.waitKey(10)
     return np.array(IDs),faces
 
-IDs,faces = getImagesWithID(path)
+IDs,faces = getImagesWithID(path)   # trả về 2 mảng id và face tương ứng
 
 recognizer.train(faces,IDs)
 
