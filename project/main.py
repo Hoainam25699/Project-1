@@ -26,7 +26,6 @@ import pyodbc  # to connect database
 import playsound  # to play saved mp3 file
 from gtts import gTTS  # google text to speech
 import os  # to save/open files
-import wolframalpha  # to calculate strings into formula
 from selenium import webdriver  # to control browser operations
 
 
@@ -94,19 +93,6 @@ def process_text(input):
             I am here to make your life easier. You can command me to perform 
             various tasks such as calculating sums or opening applications '''
             assistant_speaks(speak)
-            return
-
-        elif "calculate" in input.lower():
-
-            # write your wolframalpha app_id here
-            app_id = "WOLFRAMALPHA_APP_ID"
-            client = wolframalpha.Client(app_id)
-
-            indx = input.lower().split().index('calculate')
-            query = input.split()[indx + 1:]
-            res = client.query(' '.join(query))
-            answer = next(res.results).text
-            assistant_speaks("The answer is " + answer)
             return
 
         elif 'open' in input:
@@ -263,7 +249,11 @@ val = 0
 
 
 font = cv2.FONT_HERSHEY_SIMPLEX
+
+#  use to detect objects in a video stream
+# return a CascadeClassifier object
 face_cascade = cv2.CascadeClassifier('D:\\PROGRAM LANGUAGE\\python\\speechrecoginzer\\haarcascade_frontalface_default.xml')
+
 
 '''
     when we listen, the energy threshold is already set to a good value,
@@ -273,25 +263,25 @@ with m as source:
     r.adjust_for_ambient_noise(source)  # we only need to calibrate once, before we start listening
 stop_listening = r.listen_in_background(m, callback)
 
-'''
-    main thread
-'''
+
+
+#main thread
 while True:
     ret, img = cap.read()
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
     if (val == 9):
-        faces = face_cascade.detectMultiScale(img, scaleFactor=1.3, minNeighbors=5)
+        faces = face_cascade.detectMultiScale(img, scaleFactor=1.3, minNeighbors=5)  # detect face
         for (x, y, w, h) in faces:
             cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
             roi_color = img[y:y + h, x:x + w]
-            id, conf = rec.predict(gray[y:y + h, x:x + w])
+            id, conf = rec.predict(gray[y:y + h, x:x + w]) # recoginizer face
             profile = getProfile(id)
             if (profile != None):
                 cv2.putText(img, "Name : " + str(profile[1]), (x, y + h + 20), font, 1, (0, 0, 255))
                 cv2.putText(img, "Gender : " + str(profile[2]), (x, y + h + 45), font, 1, (0, 255, 0))
                 cv2.putText(img, "Age : " + str(profile[3]), (x, y + h + 70), font, 1, (255, 255, 0))
-            if(profile == None):
+            else:
                 cv2.putText(img, "Unknow", (x, y + h + 20), font, 1, (0, 0, 255))
 
 
@@ -300,8 +290,7 @@ while True:
         break
     cv2.imshow('Video', img)
 
-'''
-    close connect
-'''
+
+#close connect
 cap.release()
 cv2.destroyAllWindows()
