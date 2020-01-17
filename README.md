@@ -55,8 +55,7 @@ Best minNeighbor is 3 !
 
 
 
-
-'''ruby
+```ruby
 
 
 
