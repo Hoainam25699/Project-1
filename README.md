@@ -38,7 +38,7 @@ cv2.destroyAllWindows()
 
 ###### main.py
 
-```ruby
+
 
 '''
  selenium is a tool open source, help excute task on a web page automatically
@@ -47,7 +47,6 @@ cv2.destroyAllWindows()
  resize a larger face to a smaller one, making it detectable by the algorithm.
  1.3 that mean reduce the size 30% 
 
-```
  minNeighbors – Parameter specifying how many neighbors each candidate rectangle should have to retain it.
 Haar cascade classifier works with a sliding window approach. 
 size parameter which usually a pretty small value like 20 20.
