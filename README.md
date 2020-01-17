@@ -47,6 +47,7 @@ cv2.destroyAllWindows()
  resize a larger face to a smaller one, making it detectable by the algorithm.
  1.3 that mean reduce the size 30% 
 
+```
  minNeighbors – Parameter specifying how many neighbors each candidate rectangle should have to retain it.
 Haar cascade classifier works with a sliding window approach. 
 size parameter which usually a pretty small value like 20 20.
@@ -56,8 +57,10 @@ if give minNeibor = 1, we have few false positives
 
 Best minNeighbor is 3 !
 
+```
 
-'''
+
+'''ruby
 
 
 
