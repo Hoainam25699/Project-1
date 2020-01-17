@@ -38,9 +38,6 @@ cv2.destroyAllWindows()
 
 ###### main.py
 
-
-
-'''
  selenium is a tool open source, help excute task on a web page automatically
 
  scaleFactor – Parameter specifying how much the image size is reduced at each image scale.
@@ -56,7 +53,7 @@ if give minNeibor = 1, we have few false positives
 
 Best minNeighbor is 3 !
 
-```
+
 
 
 '''ruby
